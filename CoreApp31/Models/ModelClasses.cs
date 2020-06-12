@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +9,7 @@ namespace CoreApp31.Models
     {
         [Key] // primary identity key
         public int CategoryRowId { get; set; }
-        [Required(ErrorMessage ="Category Id is must")]
+        [Required(ErrorMessage = "Category Id is must")]
         [StringLength(20)]
         public string CategoryId { get; set; }
         [Required(ErrorMessage = "Category Name is must")]
@@ -39,18 +38,18 @@ namespace CoreApp31.Models
         [StringLength(400)]
         public string Description { get; set; }
         [Required(ErrorMessage = "Price is must")]
-        [NumericValidator(ErrorMessage ="Price must be positive")]
+        [NumericValidator(ErrorMessage = "Price must be positive")]
         public int Price { get; set; }
         [ForeignKey("CategoryRowId")]
         public int CategoryRowId { get; set; } // expected foreign key
         public Category Category { get; set; } // expcted referencial integrity
     }
-
+    
     public class NumericValidatorAttribute : ValidationAttribute
     {
-       
+
         public override bool IsValid(object value)
-        { 
+        {
             if (Convert.ToInt32(value) < 0)
             {
                 return false;

@@ -46,11 +46,16 @@ namespace CoreApp31
             services.AddDbContext<VodafoneDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("VodafoneAppConnection"));
             });
+            services.AddDbContext<VodafoneExceptionDbContext>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("VodafoneExceptionLogConnection"));
+            });
+            
 
 
             // register the Custom Repository Services in DI Container
             services.AddScoped<IService<Category, int>, CategoryService>();
             services.AddScoped<IService<Product, int>, ProductService>();
+
             services.AddControllersWithViews(options => {
                 // registering the custom filter in services
                 // this will be executed when the exception occures in

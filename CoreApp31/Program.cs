@@ -2,8 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreApp31.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +17,18 @@ namespace CoreApp31
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+             CreateHostBuilder(args).Build().Run();
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    var services = scope.ServiceProvider;
+            //    var exceptionlogcontext = services.GetRequiredService<VodafoneExceptionDbContext>();               
+                
+            //        var modelMetadata = services.GetRequiredService<IModelMetadataProvider>();
+
+            //        CustomFilters.MyExceptionFilterAttribute myClass = new CustomFilters.MyExceptionFilterAttribute(modelMetadata, exceptionlogcontext);
+                               
+            //}
+            //host.Run();
         }
         /// <summary>
         /// Define a contract between the Hosting Env (IIS/NGinx/Apache/Docker/Self-Contain) and
@@ -30,6 +45,7 @@ namespace CoreApp31
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
     }
 }

@@ -9,6 +9,7 @@ namespace CoreApp31.Models
     {
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        
 
         /// <summary>
         /// DbContextOptions<DbContext> will resolve all the dependencies on DbContext class e.g. Connection, DbSet, Command, etc

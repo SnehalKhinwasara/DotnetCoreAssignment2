@@ -67,7 +67,9 @@ namespace CoreApp31.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
+           
             var prd = await prdService.GetAsync(id);
+            ViewBag.CategoryRowId = new SelectList(await catService.GetAsync(), "CategoryRowId", "CategoryName", prd.CategoryRowId);
             return View(prd);
         }
 
@@ -79,8 +81,11 @@ namespace CoreApp31.Controllers
                 // validate the model
                 if (ModelState.IsValid)
                 {
-                    Product = await prdService.UpdateAsync(id,Product);
+                    Product = await prdService.UpdateAsync(id, Product);
                     return RedirectToAction("Index");
+                }
+                else {
+                    ViewBag.CategoryRowId = new SelectList(await catService.GetAsync(), "CategoryRowId", "CategoryName", Product.CategoryRowId);
                 }
                 return View(Product); // stey on Same View with validation error messages
             }
